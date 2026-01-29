@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Adrian's Space</title>
+  <meta name="description" content="Adrian's personal website">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg.png') center/cover no-repeat fixed;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .desktop { position: relative; width: 100%; height: 100%; padding: 20px; }
+
+    .icon { width: 80px; text-align: center; color: #fff; cursor: pointer; margin-bottom: 20px; transition: transform 0.2s ease, filter 0.2s ease; }
+    .icon:hover { transform: scale(1.08); filter: brightness(1.2); }
+    .icon:active { transform: scale(0.95); }
+    .icon img { width: 64px; height: 64px; display: block; margin: 0 auto 5px; }
+
+    .window {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 700px;
+      height: 500px;
+      background: rgba(17,17,17,0.85);
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      z-index: 10;
+      cursor: move;
+      overflow: hidden;
+      transform: scale(0.85);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .window.show { transform: scale(1); opacity: 1; }
+
+    .title-bar { background: rgba(34,34,34,0.85); padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+
+    .window-content { padding: 10px; flex: 1; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+    .close { cursor: pointer; font-weight: bold; }
+
+    .project-item { display: flex; flex-direction: column; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 12px; width: 48%; cursor: pointer; transition: transform 0.2s ease; }
+    .project-item:hover { transform: scale(1.02); }
+    .project-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 6px; }
+    .project-item .desc { margin-top: 8px; font-size: 14px; }
+    .project-item .title { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
+
+    .social-link { display: flex; align-items: center; margin-top: 0; cursor: pointer; }
+    .social-link img { width: 24px; height: 24px; margin-right: 8px; }
+    .social-link a { color: #1DA1F2; text-decoration: none; font-weight: bold; }
+    .social-link a:hover { text-decoration: underline; }
+
+    .window-content.button-list { display: block; }
+
+    .welcome { position: absolute; top: 20%; right: 10%; color: #fff; font-size: 24px; font-weight: bold; text-shadow: 1px 1px 4px #000; display: flex; align-items: center; }
+    .welcome img { width: 32px; height: 32px; margin-left: 10px; }
+
+    .taskbar { position: absolute; bottom: 0; width: 100%; height: 40px; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: space-between; padding: 0 10px; color: #fff; font-size: 14px; }
+    .taskbar-left img { height: 24px; margin-right: 10px; cursor: pointer; }
+    .clock { text-align: right; font-size: 12px; line-height: 1.2; }
+  </style>
+</head>
+<body>
+
+<div class="desktop">
+  
+
+  <!-- Icons -->
+  <div class="icon" onclick="showWindow('socials')"><img src="socials.png"><span>Socials</span></div>
+  <div class="icon" onclick="showWindow('about')"><img src="aboutme.png"><span>About Me</span></div>
+  <div class="icon" onclick="showWindow('projects')"><img src="projects.png"><span>My Projects</span></div>
+  <div class="icon" onclick="showWindow('buttons')"><img src="buttons.png"><span>Funny Buttons</span></div>
+
+  <!-- Windows -->
+  <div class="window" id="socials">
+    <div class="title-bar"><span>Socials</span><span class="close" onclick="closeWindow('socials')">X</span></div>
+    <div class="window-content" style="align-items: flex-start;">
+      <div class="social-link">
+        <img src="github.png" alt="GitHub">
+        <a href="https://github.com/Adium1000" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="window" id="about">
+    <div class="title-bar"><span>About Me</span><span class="close" onclick="closeWindow('about')">X</span></div>
+    <div class="window-content">My name is Adrian, I live in Romania and I love CAD things, and programming.When I'm not spending time programming, I usually prefer to repair laptops for others or do outdoor sports. Sometimes I find it difficult to talk about programming, and so on, because the people around me are not interested in this topic and it seems awkward and can also make you feel superior.
+Anyway, thanks for reading :)<a href="https://play.google.com/store/apps/details?id=com.watchfacestudio.retrodigital1" target="_blank">WatchFace Obssesion</a><a href="https://github.com/Adium1000" target="_blank">Git of a random hub?</a></div><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX30w0JtSIv4j?utm_source=generator" width="100%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <div class="window" id="projects">
+    <div class="title-bar"><span>My Projects (Click on any to redirect!) </span><span class="close" onclick="closeWindow('projects')">X</span></div>
+    <div class="window-content">
+      <div class="project-item" onclick="window.open('https://github.com/Adium1000/Esp32-KeyChain', '_blank')">
+        <div class="title">Esp32-KeyChain
+        </div>
+        <img src="p1.png" alt="Proiect 1">
+        <div class="desc">A mini keychain that uses an addressable LED grid to display emojis and drawings, perfect for attaching to a backpack.</div>
+      </div>
+      <div class="project-item" onclick="window.open('https://github.com/Adium1000/SenseBox-Mini', '_blank')">
+        <div class="title">SenseBox Mini</div>
+        <img src="p2.png" alt="Proiect 2">
+        <div class="desc">A camera monitoring device with a WEB control panel</div>
+      </div>
+      <div class="project-item" onclick="window.open('https://github.com/Adium1000/Smart-MAX7219-Clock', '_blank')">
+        <div class="title">MAX7219 Smart Desk Clock</div>
+        <img src="p3.png" alt="Proiect 3">
+        <div class="desc">A compact and modern smart desk clock designed for everyday use. (smarter)</div>
+      </div>
+      <div class="project-item" onclick="window.open('https://github.com/Adium1000/SnowyFifteen', '_blank')">
+        <div class="title">SnowyFifteen</div>
+        <img src="p4.png" alt="Proiect 4">
+        <div class="desc">A very simple winter-themed fifteen puzzle game made with HTML, CSS and JS.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="window" id="buttons">
+    <div class="title-bar"><span>Buttons </span><span class="close" onclick="closeWindow('buttons')">X</span></div>
+    <div class="window-content">
+    
+    <a href="https://ingobeans.github.io/pondering-horses/"><img src="https://ingobeans.github.io/pondering-horses/images/irisbutton.png"></a>
+    <img src="1of2.gif" alt="1of2" height="31" width="88">
+    <img src="duvigneaud_net.gif" alt="duvigneaud_net" height="31" width="88">
+    <img src="donate.gif" alt="donate" height="31" width="88">
+    <img src="dbfire88.gif" alt="dbfire88" height="31" width="88">
+    <img src="enhance.gif" alt="enhance" height="31" width="88">
+    <img src="doombut.gif" alt="doombut" height="31" width="88">
+    <img src="hagai.gif" alt="hagai" height="31" width="88">
+    <img src="half-life.gif" alt="half-life" height="31" width="88">
+    <img src="firefoxget.gif" alt="firefoxget" height="31" width="88">
+    <img src="vscbutton.gif" alt="vscbutton" height="31" width="88">
+    <img src="ubuntu-88x31.gif" alt="ubuntu-88x31" height="31" width="88"> 
+    <img src="winxp.gif" alt="winxp" height="31" width="88">
+    <img src="winrar3.gif" alt="winrar3" height="31" width="88">
+    <img src="winamp6.gif" alt="winampg" height="31" width="88">
+    <iframe src="https://john.citrons.xyz/embed?ref=example.com" style="margin-left:auto;display:block;margin-right:auto;max-width:732px;width:100%;height:94px;border:none;"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="taskbar">
+  <div class="taskbar-left">
+    <img src="socials.png" onclick="showWindow('socials')">
+    <img src="aboutme.png" onclick="showWindow('about')">
+    <img src="projects.png" onclick="showWindow('projects')">
+    <img src="buttons.png" onclick="showWindow('buttons')">
+  </div>
+  <div class="clock" id="clock">--:--<br>[DATA]</div>
+</div>
+
+<script>
+  function showWindow(id) { const win = document.getElementById(id); win.style.display = 'flex'; setTimeout(()=>win.classList.add('show'),10); }
+  function closeWindow(id) { const win = document.getElementById(id); win.classList.remove('show'); setTimeout(()=>win.style.display='none',300); }
+
+  let draggedWindow=null, offsetX=0, offsetY=0;
+  document.querySelectorAll('.window').forEach(el=>{ el.addEventListener('mousedown', e=>{ draggedWindow=el; offsetX=e.clientX-el.offsetLeft; offsetY=e.clientY-el.offsetTop; el.style.zIndex=100; }); });
+  document.addEventListener('mousemove', e=>{ if(draggedWindow){ draggedWindow.style.left=(e.clientX-offsetX)+'px'; draggedWindow.style.top=(e.clientY-offsetY)+'px';} });
+  document.addEventListener('mouseup', ()=>{ draggedWindow=null; });
+
+  function updateClock(){ const now=new Date(); const time=now.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'}); const date=now.toLocaleDateString('ro-RO'); document.getElementById('clock').innerHTML=time+'<br>'+date; }
+  setInterval(updateClock,1000); updateClock();
+</script>
+
+</body>
+</html>
